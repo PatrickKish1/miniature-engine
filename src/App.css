@@ -36,3 +36,34 @@
     transform: rotate(360deg);
   }
 }
+
+/* App.css or your CSS file */
+.header {
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header .logo {
+  height: 40px;
+}
+
+.header .nav-item {
+  color: #1f2937;
+  font-weight: 500;
+  margin: 0 20px;
+}
+
+.header .nav-item:hover {
+  color: #ff0909;
+}
+
+.header .button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.header .button-connect {
+  background-color: #ff0909;
+  color: white;
+}
