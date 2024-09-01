@@ -17,7 +17,7 @@ function App() {
           onClick={handleRedirect}
           className="bg-[#ff0909] text-white px-4 py-2 rounded mt-4"
         >
-          Go to Equibloc
+          Go to EquiBloc
         </button>
       </main>
       <Footer />
