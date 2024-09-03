@@ -6,6 +6,7 @@ import forwardArrowIcon from '../assets/forward-arrow.svg';
 import bgHexagon from '../assets/bitmapGrey 2.png';
 import bgHexagon1 from '../assets/bitmapGrey 1.png';
 import briefcaseIcon from '../assets/briefcase.svg'; // Import the briefcase icon
+import profileFillIcon from '../assets/profile-fill.svg';
 import calendarIcon from '../assets/calender.svg'; // Import the calendar icon
 import moneyIcon from '../assets/money.svg'; // Import the money icon
 import GigsData from '../components/Gigs'; // Ensure this file exports the data
@@ -98,10 +99,14 @@ const JobsPage = () => {
                     <img src={calendarIcon} alt="Calendar Icon" width={14} height={14} className="mr-1" />
                     <span>{job.duration}</span>
                   </div>
-                  <div className="flex items-center mb-3">
+                  <div className="flex items-center mb-3 mt-[-18px] ml-[120px]">
                     <img src={moneyIcon} alt="Money Icon" width={14} height={14} className="mr-1" />
                     <span>{job.rate}</span>
                   </div>
+                  <div className="flex items-center mt-[-18px] ml-[120px]">
+                  <img src={profileFillIcon} alt="Rate" style={{ width: '14px', height: '14px' }} className="mr-1" />
+                  <span>{job.rate}</span>
+                </div>
                 </div>
                 
                 <button className="bg-gray-800 text-white px-4 py-2 rounded-md text-sm self-center">
@@ -111,14 +116,14 @@ const JobsPage = () => {
             ))}
           </div>
 
-          <div className="flex justify-center items-center mt-8">
+          <div className="flex justify-center items-center mt-10 mb-[150px]">
             <button className="flex items-center px-3 py-1 border-0 rounded">
               <img src={backArrowIcon} alt="Previous" width={16} height={16} />
               <span className="ml-1">Previous</span>
             </button>
             <div className="flex space-x-2 mx-4">
-              <button className="px-3 py-1 border rounded bg-[#ff0909] bg-500 text-white">1</button>
-              <button className="px-3 py-1 border rounded">2</button>
+              <button className="px-3 py-1 border-0 rounded bg-[#ff0909] bg-500 text-white">1</button>
+              <button className="px-3 py-1 border-0 rounded">2</button>
             </div>
             <button className="flex items-center px-3 py-1 border-0 rounded">
               <span className="mr-1">Next</span>

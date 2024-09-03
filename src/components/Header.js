@@ -16,8 +16,18 @@ const Header = () => {
 
   // Check for existing wallet connection state on component mount
   useEffect(() => {
-    // No need to use localStorage, as you don't want to persist addresses across sessions.
-    // All wallet addresses will be managed dynamically.
+    const loadWallet = async () => {
+      if (window.ethereum) {
+        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+        if (accounts.length > 0) {
+          setIsWalletConnected(true);
+          setWalletAddresses(accounts);
+          setActiveWallet(accounts[0]);
+        }
+      }
+    };
+
+    loadWallet();
   }, []);
 
   const handleWalletConnection = async () => {
@@ -26,7 +36,8 @@ const Header = () => {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         setIsWalletConnected(true);
         setWalletAddresses(accounts);
-        setActiveWallet(accounts[0]);
+        setActiveWallet(accounts.length > 1 ? '' : accounts[0]); // Set active wallet if only one
+        localStorage.setItem('activeWallet', accounts.length > 1 ? '' : accounts[0]); // Save to local storage
         setNotification({ show: true, message: 'Wallet connected!' });
       } catch (error) {
         setNotification({ show: true, message: 'Failed to connect wallet.' });
@@ -41,13 +52,16 @@ const Header = () => {
     setWalletAddresses([]);
     setActiveWallet('');
     setShowDropdown(false);
+    localStorage.removeItem('activeWallet'); // Remove from local storage
     setNotification({ show: true, message: 'Wallet disconnected!' });
+    navigate('/'); // Redirect to home page
   };
 
   const handleWalletSelection = (address) => {
     setActiveWallet(address);
     setNotification({ show: true, message: `Switched to wallet ${address.slice(0, 6)}...${address.slice(-4)}` });
     setShowDropdown(false);
+    localStorage.setItem('activeWallet', address); // Save selected wallet to local storage
   };
 
   const handleJobsNavigation = () => {
@@ -91,10 +105,10 @@ const Header = () => {
         {isWalletConnected && (
           <>
             <img src={notificationIcon} alt="Notifications" className="w-6 h-6 cursor-pointer" />
-            <Link to="/creategig" className="border-2 border-[#ff0909] text-[#ff0909] bg-white px-4 py-2 rounded font-bold">
+            <Link to="/gigs" className="border-2 border-[#ff0909] text-[#ff0909] bg-white px-4 py-2 rounded font-bold">
               Hire
             </Link>
-            <Link to="/creategig" className="bg-[#ff0909] text-white px-4 py-2 rounded font-bold">
+            <Link to="/gigs" className="bg-[#ff0909] text-white px-4 py-2 rounded font-bold">
               Apply
             </Link>
           </>
@@ -118,15 +132,24 @@ const Header = () => {
               ref={dropdownRef}
               className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg z-20"
             >
-              {walletAddresses.map((address, index) => (
+              {walletAddresses.length > 1 ? (
+                walletAddresses.map((address, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleWalletSelection(address)}
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                  >
+                    {address.slice(0, 6) + '...' + address.slice(-4)}
+                  </button>
+                ))
+              ) : (
                 <button
-                  key={index}
-                  onClick={() => handleWalletSelection(address)}
+                  onClick={handleWalletConnection}
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
                 >
-                  {address.slice(0, 6) + '...' + address.slice(-4)}
+                  Connect Wallet
                 </button>
-              ))}
+              )}
               <button
                 onClick={handleWalletDisconnection}
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left mt-2"

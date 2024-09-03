@@ -102,10 +102,10 @@ function Home() {
                   <img src={moneyIcon} alt="Rate" style={{ width: '14px', height: '14px' }} className="mr-1" />
                   <span>{gig.rate}</span>
                 </div>
-              </div>
-              <div className="flex items-center mt-[-18px] ml-[120px]">
+                <div className="flex items-center mt-[-18px] ml-[120px]">
                 <img src={profileFillIcon} alt="Profile Fill" style={{ width: '14px', height: '14px' }} className="mr-1" />
                 <span>{gig.rate}</span>
+              </div>
               </div>
               <button className="bg-[#263238] text-white px-4 py-2 rounded-md text-sm self-center text-center">Apply now</button>
             </div>

@@ -5,7 +5,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home'; // Import your Home component
 import JobsPage from './pages/JobsPage'; // Import your Jobs component
-import GigsPage from './pages/GigsPage'; // Import the CreateGig component
+import GigsPage from './pages/GigsPage'; // Import the GigsPage component
+import CreateGig from './pages/CreateGig'; // Import the CreateGig component
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} /> {/* Define route for Home */}
             <Route path="/jobs" element={<JobsPage />} /> {/* Define route for JobsPage */}
-            <Route path="/creategig" element={<GigsPage />} /> {/* Define route for CreateGig */}
+            <Route path="/gigs" element={<GigsPage />} /> {/* Define route for GigsPage */}
+            <Route path="/creategig" element={<CreateGig />} /> {/* Define route for CreateGig */}
             {/* Add more routes as needed */}
           </Routes>
         </main>
