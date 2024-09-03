@@ -5,17 +5,17 @@ import backArrowIcon from '../assets/back-arrow.svg';
 import forwardArrowIcon from '../assets/forward-arrow.svg';
 import bgHexagon from '../assets/bitmapGrey 2.png';
 import bgHexagon1 from '../assets/bitmapGrey 1.png';
-import briefcaseIcon from '../assets/briefcase.svg'; // Import the briefcase icon
+import briefcaseIcon from '../assets/briefcase.svg';
 import profileFillIcon from '../assets/profile-fill.svg';
-import calendarIcon from '../assets/calender.svg'; // Import the calendar icon
-import moneyIcon from '../assets/money.svg'; // Import the money icon
-import GigsData from '../components/Gigs'; // Ensure this file exports the data
+import calendarIcon from '../assets/calender.svg';
+import moneyIcon from '../assets/money.svg';
+import GigsData from '../components/Gigs';
 
 const JobsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('All');
 
-  // Filter and limit the jobs data to 16 jobs
+  // Filter and limit the jobs data
   const filteredJobs = GigsData
     .filter(job => {
       const searchMatch = job.jobTitle.toLowerCase().includes(searchTerm.toLowerCase());
@@ -75,11 +75,6 @@ const JobsPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 mr-[5px] ml-[10px] gap-6">
             {filteredJobs.map(job => (
               <div key={job.id} className="relative w-[230px] h-[300px] bg-white rounded-lg shadow-md p-3 flex flex-col justify-between">
-                {/* Job Type */}
-                <div className="absolute top-2 right-0 bg-[#ff0909] bg-600 text-white text-xs mb-[30px] px-3 py-1 rounded-l-[30px]">
-                  {job.type}
-                </div>
-
                 <div className="flex items-center mb-2">
                   <div className="w-[80px] h-[80px] relative mr-3 mt-[30px]">
                     <img src={job.companyLogo} alt="Company Logo" className="w-full h-full object-cover rounded-full border border-gray-200" />
@@ -99,10 +94,10 @@ const JobsPage = () => {
                     <img src={calendarIcon} alt="Calendar Icon" width={14} height={14} className="mr-1" />
                     <span>{job.duration}</span>
                   </div>
-                  <div className="flex items-center mb-3 mt-[-18px] ml-[120px]">
-                    <img src={moneyIcon} alt="Money Icon" width={14} height={14} className="mr-1" />
-                    <span>{job.rate}</span>
-                  </div>
+                  <div className="flex items-center mr-2">
+                  <img src={moneyIcon} alt="Rate" style={{ width: '14px', height: '14px' }} className="mr-1" />
+                  <span>{job.rate}</span>
+                </div>
                   <div className="flex items-center mt-[-18px] ml-[120px]">
                   <img src={profileFillIcon} alt="Rate" style={{ width: '14px', height: '14px' }} className="mr-1" />
                   <span>{job.rate}</span>
@@ -110,7 +105,7 @@ const JobsPage = () => {
                 </div>
                 
                 <button className="bg-gray-800 text-white px-4 py-2 rounded-md text-sm self-center">
-                  Apply now
+                  Buy Now
                 </button>
               </div>
             ))}

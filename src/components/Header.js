@@ -17,12 +17,15 @@ const Header = () => {
   // Check for existing wallet connection state on component mount
   useEffect(() => {
     const loadWallet = async () => {
-      if (window.ethereum) {
+      const storedWallet = localStorage.getItem('activeWallet');
+      const walletConnected = localStorage.getItem('isWalletConnected') === 'true';
+
+      if (window.ethereum && walletConnected && storedWallet) {
         const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-        if (accounts.length > 0) {
+        if (accounts.includes(storedWallet)) {
           setIsWalletConnected(true);
           setWalletAddresses(accounts);
-          setActiveWallet(accounts[0]);
+          setActiveWallet(storedWallet);
         }
       }
     };
@@ -38,6 +41,7 @@ const Header = () => {
         setWalletAddresses(accounts);
         setActiveWallet(accounts.length > 1 ? '' : accounts[0]); // Set active wallet if only one
         localStorage.setItem('activeWallet', accounts.length > 1 ? '' : accounts[0]); // Save to local storage
+        localStorage.setItem('isWalletConnected', 'true'); // Mark wallet as connected
         setNotification({ show: true, message: 'Wallet connected!' });
       } catch (error) {
         setNotification({ show: true, message: 'Failed to connect wallet.' });
@@ -53,6 +57,7 @@ const Header = () => {
     setActiveWallet('');
     setShowDropdown(false);
     localStorage.removeItem('activeWallet'); // Remove from local storage
+    localStorage.setItem('isWalletConnected', 'false'); // Mark wallet as disconnected
     setNotification({ show: true, message: 'Wallet disconnected!' });
     navigate('/'); // Redirect to home page
   };
@@ -96,7 +101,7 @@ const Header = () => {
       <nav className="flex-1 flex ml-[120px] justify-center space-x-6">
         <Link to="/" className="text-gray-700 hover:text-gray-900">Home</Link>
         <button onClick={handleJobsNavigation} className="text-gray-700 hover:text-gray-900">
-          Jobs
+          Products
         </button>
         <Link to="#about" className="text-gray-700 hover:text-gray-900">About</Link>
       </nav>
@@ -106,10 +111,10 @@ const Header = () => {
           <>
             <img src={notificationIcon} alt="Notifications" className="w-6 h-6 cursor-pointer" />
             <Link to="/gigs" className="border-2 border-[#ff0909] text-[#ff0909] bg-white px-4 py-2 rounded font-bold">
-              Hire
+              Sell
             </Link>
-            <Link to="/gigs" className="bg-[#ff0909] text-white px-4 py-2 rounded font-bold">
-              Apply
+            <Link to="/jobs" className="bg-[#ff0909] text-white px-4 py-2 rounded font-bold">
+              Deliver
             </Link>
           </>
         )}

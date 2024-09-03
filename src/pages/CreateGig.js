@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Notification from '../components/Notification';
 import addPlusIcon from '../assets/add-plus.svg'; // Assuming you have this icon
-import next from '../assets/forward-arrow.svg'
-import back from '../assets/back-arrow.svg'
+import next from '../assets/forward-arrow.svg';
+import back from '../assets/back-arrow.svg';
 import './CreateGig.css'; // Import the CSS file for the tracker
 import ReactQuill from 'react-quill'; // Import ReactQuill for rich text editing
 import 'react-quill/dist/quill.snow.css'; // Import Quill CSS for styling
@@ -13,7 +13,9 @@ function CreateGig({ walletAddress, addGig }) {
   const [companyName, setCompanyName] = useState('');
   const [rate, setRate] = useState('');
   const [duration, setDuration] = useState('');
+  const [durationUnit, setDurationUnit] = useState('days'); // Default to days
   const [type, setType] = useState('');
+  const [desiredCandidates, setDesiredCandidates] = useState(''); // New field for desired candidates
   const [aboutCompany, setAboutCompany] = useState('');
   const [jobDescription, setJobDescription] = useState('');
   const [kpis, setKpis] = useState('');
@@ -42,8 +44,9 @@ function CreateGig({ walletAddress, addGig }) {
         jobTitle,
         companyName,
         rate,
-        duration,
+        duration: `${duration} ${durationUnit}`, // Combine duration and unit
         type,
+        desiredCandidates, // Include desired candidates
         aboutCompany,
         jobDescription,
         kpis,
@@ -65,7 +68,9 @@ function CreateGig({ walletAddress, addGig }) {
     setCompanyName('');
     setRate('');
     setDuration('');
+    setDurationUnit('days'); // Reset to default
     setType('');
+    setDesiredCandidates('');
     setAboutCompany('');
     setJobDescription('');
     setKpis('');
@@ -95,23 +100,112 @@ function CreateGig({ walletAddress, addGig }) {
   return (
     <div className="min-h-screen font-[Times New Roman] flex items-center justify-center bg-white p-6 relative">
       {/* Progress Tracker */}
-      <div className="progress-tracker mt-[30px]">
-        <span className="tracker-label ml-[-30px]">Gig Info</span>
-        <div className={`circle ${step === 1 ? 'active' : ''}`}>
-        </div>
-        <div className={`line ${step === 2 ? 'filled' : ''}`}></div>
-        <div className={`circle ${step === 2 ? 'active' : ''}`}>
-        </div>
-        <span className="tracker-label ml-[540px]">Add Quiz</span>
+      <div className="progress-tracker mt-[30px] flex justify-center items-center">
+        <span className="tracker-label ml-[-30px]">Product Info</span>
+        <div className={`circle ${step === 1 ? 'bg-[#ff0909]' : 'bg-gray-300'}`}></div>
+        <div className={`line ${step === 2 ? 'bg-[#ff0909]' : 'bg-gray-300'}`}></div>
+        <div className={`circle ${step === 2 ? 'bg-[#ff0909]' : 'bg-gray-300'}`}></div>
+        <span className="tracker-label ml-[540px]">Buyer Details</span>
       </div>
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4 w-full mt-[90px] max-w-4xl bg-white p-8 rounded-md shadow-lg relative">
         {step === 1 && (
           <>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="jobTitle" className="block text-sm font-medium text-gray-700">
+                  Product Name
+                </label>
+                <input
+                  type="text"
+                  id="jobTitle"
+                  value={jobTitle}
+                  onChange={(e) => setJobTitle(e.target.value)}
+                  className="w-full border border-gray-300 rounded-md p-2"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="companyName" className="block text-sm font-medium text-gray-700">
+                  Company Name
+                </label>
+                <input
+                  type="text"
+                  id="companyName"
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
+                  className="w-full border border-gray-300 rounded-md p-2"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="rate" className="block text-sm font-medium text-gray-700">
+                  Rate
+                </label>
+                <input
+                  type="text"
+                  id="rate"
+                  value={rate}
+                  onChange={(e) => setRate(e.target.value)}
+                  className="w-full border border-gray-300 rounded-md p-2"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="duration" className="block text-sm font-medium text-gray-700">
+                  Duration
+                </label>
+                <div className="flex">
+                  <input
+                    type="number"
+                    id="duration"
+                    value={duration}
+                    onChange={(e) => setDuration(e.target.value)}
+                    className="w-full border border-gray-300 rounded-l-md p-2"
+                    required
+                  />
+                  <select
+                    value={durationUnit}
+                    onChange={(e) => setDurationUnit(e.target.value)}
+                    className="border border-gray-300 rounded-r-md p-2"
+                  >
+                    <option value="days">Days</option>
+                    <option value="weeks">Weeks</option>
+                    <option value="months">Months</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label htmlFor="type" className="block text-sm font-medium text-gray-700">
+                  Type
+                </label>
+                <input
+                  type="text"
+                  id="type"
+                  value={type}
+                  onChange={(e) => setType(e.target.value)}
+                  className="w-full border border-gray-300 rounded-md p-2"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="desiredCandidates" className="block text-sm font-medium text-gray-700">
+                  Available Quantity
+                </label>
+                <input
+                  type="number"
+                  id="desiredCandidates"
+                  value={desiredCandidates}
+                  onChange={(e) => setDesiredCandidates(e.target.value)}
+                  className="w-full border border-gray-300 rounded-md p-2"
+                  required
+                />
+              </div>
+            </div>
             <div>
-              <label htmlFor="companyLogo" className="block text-sm font-medium text-gray-700">
-                Company Logo
+              <label htmlFor="companyLogo" className="block text-sm mt-[80px] font-medium text-gray-700">
+                Product Image
               </label>
               <div
                 className={`w-[60%] h-48 flex items-center justify-center border-2 border-gray-300 rounded-md cursor-pointer ${companyLogo ? 'bg-transparent' : 'bg-gray-200'}`}
@@ -132,150 +226,114 @@ function CreateGig({ walletAddress, addGig }) {
               </div>
             </div>
             <div>
-              <label htmlFor="jobTitle" className="block text-sm font-medium text-gray-700">
-                Job Title
-              </label>
-              <input
-                type="text"
-                id="jobTitle"
-                value={jobTitle}
-                onChange={(e) => setJobTitle(e.target.value)}
-                className="w-full border border-gray-300 rounded-md p-2"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="companyName" className="block text-sm font-medium text-gray-700">
-                Company Name
-              </label>
-              <input
-                type="text"
-                id="companyName"
-                value={companyName}
-                onChange={(e) => setCompanyName(e.target.value)}
-                className="w-full border border-gray-300 rounded-md p-2"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="rate" className="block text-sm font-medium text-gray-700">
-                Rate
-              </label>
-              <input
-                type="text"
-                id="rate"
-                value={rate}
-                onChange={(e) => setRate(e.target.value)}
-                className="w-full border border-gray-300 rounded-md p-2"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="duration" className="block text-sm font-medium text-gray-700">
-                Duration
-              </label>
-              <input
-                type="text"
-                id="duration"
-                value={duration}
-                onChange={(e) => setDuration(e.target.value)}
-                className="w-full border border-gray-300 rounded-md p-2"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="type" className="block text-sm font-medium text-gray-700">
-                Type
-              </label>
-              <input
-                type="text"
-                id="type"
-                value={type}
-                onChange={(e) => setType(e.target.value)}
-                className="w-full border border-gray-300 rounded-md p-2"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="aboutCompany" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="aboutCompany" className="block text-sm mt-[80px] font-medium text-gray-700">
                 About the Company
               </label>
               <ReactQuill
                 theme="snow"
                 value={aboutCompany}
                 onChange={setAboutCompany}
-                className="w-full border border-gray-300 rounded-md p-2"
+                className="w-full border border-gray-300 rounded-md p-2 h-70"
                 required
               />
             </div>
             <div>
-              <label htmlFor="jobDescription" className="block text-sm font-medium text-gray-700">
-                Job Description
+              <label htmlFor="jobDescription" className="block text-sm mt-[80px] font-medium text-gray-700">
+                Product Description
               </label>
               <ReactQuill
                 theme="snow"
                 value={jobDescription}
                 onChange={setJobDescription}
-                className="w-full border border-gray-300 rounded-md p-2"
+                className="w-full border border-gray-300 rounded-md p-2 h-70"
                 required
               />
             </div>
             <div>
-              <label htmlFor="kpis" className="block text-sm font-medium text-gray-700">
-                KPIs
+              <label htmlFor="kpis" className="block text-sm mt-[80px] font-medium text-gray-700">
+                Contant Info
               </label>
               <ReactQuill
                 theme="snow"
                 value={kpis}
                 onChange={setKpis}
-                className="w-full border border-gray-300 rounded-md p-2"
+                className="w-full border border-gray-300 mb-[120px] rounded-md p-2 h-70"
+                required
+              />
+            </div>
+            
+          </>
+        )}
+        {step === 2 && (
+          <div>
+            {/* Placeholder for Quiz Form - Modify according to actual quiz form requirements */}
+            <h2 className="text-lg font-medium mb-10">Buyer Details</h2>
+            {/* Add your quiz form fields here */}
+            <div>
+              <label htmlFor="kpis" className="block text-sm font-medium text-gray-700">
+                Contant Info
+              </label>
+              <ReactQuill
+                theme="snow"
+                value={kpis}
+                onChange={setKpis}
+                className="w-full border mb-[80px] border-gray-300 rounded-md p-2 h-70"
                 required
               />
             </div>
             <div>
-              <label htmlFor="requiredQualifications" className="block text-sm font-medium text-gray-700">
-                Required Qualifications
+              <label htmlFor="kpis" className="block text-sm font-medium text-gray-700">
+                Location
               </label>
               <ReactQuill
                 theme="snow"
-                value={requiredQualifications}
-                onChange={setRequiredQualifications}
-                className="w-full border border-gray-300 rounded-md p-2"
+                value={kpis}
+                onChange={setKpis}
+                className="w-full border border-gray-300 mb-[120px] rounded-md p-2 h-70"
                 required
               />
             </div>
-            <div className="flex justify-between items-center">
-              <button type="button" onClick={handleNext} className="bg-[#ff0909] text-white px-4 py-2 rounded-md">
-                Next <img src={next} alt="Next" className="inline w-4 h-4 ml-2" />
-              </button>
-              <button type="button" onClick={handleCancel} className="bg-gray-500 text-white px-4 py-2 rounded-md">
-                Cancel
-              </button>
-            </div>
-          </>
+          </div>
         )}
-
-        {step === 2 && (
-          <>
-            <h2 className="text-xl font-bold mb-4">Quiz Form</h2>
-            {/* Placeholder content for the quiz form */}
-            <p>Quiz form content goes here...</p>
-            <div className="flex justify-between items-center">
-              <button type="button" onClick={handlePrevious} className="bg-gray-500 text-white px-4 py-2 rounded-md">
-              <img src={back} alt="Back" className="inline w-4 h-4 mr-2" /> Previous
-              </button>
-              <button type="submit" className="bg-[#ff0909] text-white px-4 py-2 rounded-md">
-                Submit
-              </button>
-            </div>
-          </>
-        )}
+        <div className="flex justify-between mt-4">
+          {step === 2 && (
+            <button
+              type="button"
+              onClick={handlePrevious}
+              className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md flex items-center"
+            >
+              <img src={back} alt="Back" className="w-4 h-4 mr-2" />
+              Previous
+            </button>
+          )}
+          {step === 1 && (
+            <button
+              type="button"
+              onClick={handleNext}
+              className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md flex items-center"
+            >
+              Next
+              <img src={next} alt="Next" className="w-4 h-4 ml-2" />
+            </button>
+          )}
+          <button
+            type="submit"
+            className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md"
+          >
+            {step === 1 ? '1️⃣' : 'Post Product'}
+          </button>
+          <button
+            type="button"
+            onClick={handleCancel}
+            className="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-md"
+          >
+            Cancel
+          </button>
+        </div>
       </form>
 
-      {/* Display notification if any */}
-      {notification && (
-        <Notification message={notification} duration={3000} onClose={() => setNotification('')} />
-      )}
+      {/* Notification */}
+      {notification && <Notification message={notification} />}
     </div>
   );
 }
