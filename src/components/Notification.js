@@ -7,7 +7,7 @@ const Notification = ({ message, show, onClose }) => {
     if (show) {
       const timer = setTimeout(() => {
         onClose();
-      }, 5000); // Notification duration
+      }, 400); // Notification duration
 
       return () => clearTimeout(timer);
     }

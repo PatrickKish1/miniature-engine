@@ -1,27 +1,28 @@
+// src/App.js
 import React from 'react';
-import Header from './components/Header'; // Ensure the path is correct
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import routing components
+import Header from './components/Header';
 import Footer from './components/Footer';
+import Home from './components/Home'; // Import your Home component
+import JobsPage from './pages/JobsPage'; // Import your Jobs component
+import GigsPage from './pages/GigsPage'; // Import the CreateGig component
 
 function App() {
-  // Function to handle button click
-  const handleRedirect = () => {
-    window.location.href = 'https://equibloc.vercel.app/';
-  };
-
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
-      <Header />
-      <main className="flex-grow flex flex-col items-center justify-center">
-        {/* Main content goes here */}
-        <button
-          onClick={handleRedirect}
-          className="bg-[#ff0909] text-white px-4 py-2 rounded mt-4"
-        >
-          Go to EquiBloc
-        </button>
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="flex flex-col min-h-screen bg-gray-100">
+        <Header />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} /> {/* Define route for Home */}
+            <Route path="/jobs" element={<JobsPage />} /> {/* Define route for JobsPage */}
+            <Route path="/creategig" element={<GigsPage />} /> {/* Define route for CreateGig */}
+            {/* Add more routes as needed */}
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
