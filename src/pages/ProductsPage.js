@@ -115,15 +115,15 @@ const ProductsPage = () => {
           </div>
 
           <div className="flex justify-center items-center mt-10 mb-[150px]">
-            <button className="mx-2 px-4 py-2 bg-[#ff0909] bg-500 text-white rounded-md flex items-center">
+            <button className="mx-2 px-4 py-2 bg-green-500 text-white rounded-md flex items-center">
               <img src={backArrowIcon} alt="Back" width={25} height={25} className="mr-1" />
               Back
             </button>
             <div className="flex space-x-2 mx-4">
-              <button className="px-3 py-1 border-0 rounded bg-[#ff0909] bg-500 text-white">1</button>
+              <button className="px-3 py-1 border-0 rounded bg-green-500 text-white">1</button>
               <button className="px-3 py-1 border-0 rounded">2</button>
             </div>
-            <button className="mx-2 px-4 py-2 bg-[#ff0909] bg-500 text-white rounded-md flex items-center">
+            <button className="mx-2 px-4 py-2 bg-green-500 text-white rounded-md flex items-center">
               Next
               <img src={forwardArrowIcon} alt="Forward" width={25} height={25} className="ml-1" />
             </button>

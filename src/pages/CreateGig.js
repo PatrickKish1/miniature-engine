@@ -102,9 +102,9 @@ function CreateGig({ walletAddress, addGig }) {
       {/* Progress Tracker */}
       <div className="progress-tracker mt-[30px] flex justify-center items-center">
         <span className="tracker-label ml-[-30px]">Product Info</span>
-        <div className={`circle ${step === 1 ? 'bg-[#ff0909]' : 'bg-gray-300'}`}></div>
-        <div className={`line ${step === 2 ? 'bg-[#ff0909]' : 'bg-gray-300'}`}></div>
-        <div className={`circle ${step === 2 ? 'bg-[#ff0909]' : 'bg-gray-300'}`}></div>
+        <div className={`circle ${step === 1 ? 'bg-green' : 'bg-gray-300'}`}></div>
+        <div className={`line ${step === 2 ? 'bg-green' : 'bg-gray-300'}`}></div>
+        <div className={`circle ${step === 2 ? 'bg-green' : 'bg-gray-300'}`}></div>
         <span className="tracker-label ml-[540px]">Buyer Details</span>
       </div>
 
@@ -300,7 +300,7 @@ function CreateGig({ walletAddress, addGig }) {
             <button
               type="button"
               onClick={handlePrevious}
-              className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md flex items-center"
+              className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md flex items-center"
             >
               <img src={back} alt="Back" className="w-4 h-4 mr-2" />
               Previous
@@ -310,7 +310,7 @@ function CreateGig({ walletAddress, addGig }) {
             <button
               type="button"
               onClick={handleNext}
-              className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md flex items-center"
+              className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md flex items-center"
             >
               Next
               <img src={next} alt="Next" className="w-4 h-4 ml-2" />

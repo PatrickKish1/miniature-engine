@@ -110,10 +110,10 @@ const Header = () => {
         {isWalletConnected && (
           <>
             <img src={notificationIcon} alt="Notifications" className="w-6 h-6 cursor-pointer" />
-            <Link to="/creategigs" className="border-2 border-[#ff0909] text-[#ff0909] bg-white px-4 py-[7px] rounded font-bold">
+            <Link to="/creategig" className="border-2 border-[#a3a380] text-[#a3a380] bg-white px-4 py-[7px] rounded font-bold">
               Sell
             </Link>
-            <Link to="/products" className="bg-[#ff0909] text-white px-4 py-2 rounded font-bold">
+            <Link to="/products" className="bg-[#d6ce93] text-white px-4 py-2 rounded font-bold">
               Buy
             </Link>
           </>
@@ -123,7 +123,7 @@ const Header = () => {
             onClick={() => {
               isWalletConnected ? setShowDropdown(!showDropdown) : handleWalletConnection();
             }}
-            className="bg-[#ff0909] text-white px-5 py-2.5 rounded font-bold flex items-center"
+            className="bg-[#d6ce93] text-white px-5 py-2.5 rounded font-bold flex items-center"
           >
             <img src={walletIcon} alt="Wallet Icon" className="w-4 h-4 mr-2" />
             {isWalletConnected ? (

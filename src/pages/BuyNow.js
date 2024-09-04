@@ -119,7 +119,7 @@ const BuyNow = () => {
             </button>
           </div>
           
-          <button className="bg-[#ff0909] bg-500 text-white mb-[100px] px-6 py-2 rounded-md">
+          <button className="bg-green-500 text-white mb-[100px] px-6 py-2 rounded-md">
             Purchase
           </button>
         </div>

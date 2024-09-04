@@ -36,7 +36,7 @@ function Home() {
           <h3 className="text-red-600 text-5xl font-bold mb-2">AgroBiz Got You!</h3>
           <p className="text-gray-500 text-lg mb-2">Connect your wallet to get started</p>
           <Link>
-            <button className="bg-red-600 text-white px-8 py-2 rounded-md font-bold">Get Started</button>
+            <button className="bg-green-600 text-white px-8 py-2 rounded-md font-bold">Get Started</button>
           </Link>
           
         </div>
@@ -53,7 +53,7 @@ function Home() {
 
       {/* Partners */}
       <section className="text-center py-12 bg-white px-5 mt-0">
-        <h3 className="text-red-600 text-4xl mb-10 font-bold">Our Partners</h3>
+        <h3 className="text-green-600 text-4xl mb-10 font-bold">Our Partners</h3>
         <div className="flex justify-center flex-wrap items-center gap-8">
           {[
             partnerImage1, partnerImage2, partnerImage3, partnerImage4,
@@ -75,7 +75,7 @@ function Home() {
           <img src={bgHexagon2} alt="Hexagon" width={250} height={250} />
         </div>
 
-        <h2 className="text-red-600 text-6xl font-bold mb-[80px]">Trending Products</h2>
+        <h2 className="text-green-600 text-6xl font-bold mb-[80px]">Trending Products</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ml-[85px] mr-[80px] px-5">
           {products.map(product => (
             <div key={product.id} className="relative w-full h-[270px] bg-white rounded-lg shadow-md p-3 flex flex-col justify-between">
@@ -87,15 +87,15 @@ function Home() {
               </div>
 
               <div className="flex flex-col text-gray-500 text-sm mb-2">
-                <div className="flex items-center ml-[10px] mb-3">
-                  <img src={briefcaseIcon} alt="Company" style={{ width: '14px', height: '14px' }} className="mr-1" />
+                <div className="flex items-center mr-[20px] mb-3">
+                  <img src={briefcaseIcon} alt="Company" style={{ width: '14px', height: '14px' }} className="mr-[5px]" />
                   <span>{product.companyName}</span>
                 </div>
                 <div className="flex items-center mt-[-30px] ml-[120px]">
                   <img src={calendarIcon} alt="Duration" style={{ width: '14px', height: '14px' }} className="mr-1" />
                   <span>{product.duration}</span>
                 </div>
-                <div className="flex items-center ml-2">
+                <div className="flex items-center mr-[10px]">
                   <img src={moneyIcon} alt="Rate" style={{ width: '14px', height: '14px' }} className="mr-1" />
                   <span>{product.rate}</span>
                 </div>
@@ -108,7 +108,7 @@ function Home() {
             </div>
           ))}
         </div>
-        <button className="mt-[100px] bg-red-600 text-white px-8 py-2 rounded-md font-bold">
+        <button className="mt-[100px] bg-green-600 text-white px-8 py-2 rounded-md font-bold">
             View all
             </button>
       </section>
@@ -131,7 +131,7 @@ function Home() {
               <img src={linkedinIcon} alt="LinkedIn" width={40} height={40} />
             </a>
           </div>
-          <button className="bg-red-600 text-white px-8 py-2 rounded-md font-bold mt-5">
+          <button className="bg-green-600 text-white px-8 py-2 rounded-md font-bold mt-5">
             Learn More
           </button>
         </div>
