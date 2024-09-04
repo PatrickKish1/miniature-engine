@@ -1,12 +1,11 @@
-import React from 'react';
-// Importing images
+import { React } from 'react';
+import { Link } from 'react-router-dom';
 import briefcaseIcon from '../assets/briefcase.svg';
 import calendarIcon from '../assets/calender.svg';
 import moneyIcon from '../assets/money.svg';
 import profileFillIcon from '../assets/profile-fill.svg';
 import bgHexagon1 from '../assets/bitmapGrey 1.png';
 import bgHexagon2 from '../assets/bitmapGrey 2.png';
-// import girlCoding from '../assets/bro.png';
 import partnerImage1 from '../assets/optimism.png';
 import partnerImage2 from '../assets/the-graph.png';
 import partnerImage3 from '../assets/esp-logo.png';
@@ -18,13 +17,15 @@ import partnerImage8 from '../assets/meta-logo.png';
 import twitterIcon from '../assets/TwitterX.svg';
 import instagramIcon from '../assets/Instagram.svg';
 import linkedinIcon from '../assets/LinkedIn.svg';
-// import whatWeDo from '../assets/bro1.png';
-// Importing the Gigs component
-import Gigs from './Gigs';
+import Products from './Products';
+
+
+
+
+
 
 function Home() {
-  // Assuming Gigs component exports an array of gigs
-  const gigs = Gigs.slice(0, 8); // Limit to 8 gigs
+  const products = Products.slice(0, 8);
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 overflow-hidden">
@@ -35,10 +36,13 @@ function Home() {
         </div>
 
         <div className="max-w-1/2 z-10 mb-[400px] ml-10 relative">
-          <h2 className="text-gray-800 text-lg mb-6">Looking For Affordable Products From Trusted Sources?!</h2>
-          <h3 className="text-red-600 text-5xl font-bold mb-2">EquiBloc Got You!</h3>
+          <h2 className="text-gray-800 text-lg mt-4 mb-6">Looking For Affordable Products From Trusted Sources?!</h2>
+          <h3 className="text-red-600 text-5xl font-bold mb-2">AgroBiz Got You!</h3>
           <p className="text-gray-500 text-lg mb-2">Connect your wallet to get started</p>
-          <button className="bg-red-600 text-white px-8 py-2 rounded-md font-bold">Get Started</button>
+          <Link>
+            <button className="bg-red-600 text-white px-8 py-2 rounded-md font-bold">Get Started</button>
+          </Link>
+          
         </div>
 
         <div className="relative z-10 mb-[80px]">
@@ -46,7 +50,7 @@ function Home() {
             <img src={bgHexagon2} alt="Background Hexagon" width={280} height={280} />
           </div>
           <div className="relative z-10 mr-24 mb-5">
-            <img src="https://img.buzzfeed.com/buzzfeed-static/static/2023-02/22/3/asset/5683c53a7513/sub-buzz-863-1677035525-1.jpg?crop=2923:1706;0,335" alt="Girl Coding Illustration" width={500} height={500} />
+            <img src="https://img.buzzfeed.com/buzzfeed-static/static/2023-02/22/3/asset/5683c53a7513/sub-buzz-863-1677035525-1.jpg?crop=2923:1706;0,335" alt="Girl Coding Illustration" width={500} height={500} className='rounded-lg h-[420px] mb-[90px]'/>
           </div>
         </div>
       </section>
@@ -77,31 +81,31 @@ function Home() {
 
         <h2 className="text-red-600 text-6xl font-bold mb-[80px]">Trending Products</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ml-[85px] mr-[80px] px-5">
-          {gigs.map(gig => (
-            <div key={gig.id} className="relative w-full h-[270px] bg-white rounded-lg shadow-md p-3 flex flex-col justify-between">
+          {products.map(product => (
+            <div key={product.id} className="relative w-full h-[270px] bg-white rounded-lg shadow-md p-3 flex flex-col justify-between">
               <div className="flex items-center mb-2">
                 <div className="w-[80px] h-[80px] relative mt-[50px] mr-3">
-                  <img src={gig.companyLogo} alt="Company Logo" style={{ width: '120px', height: '120px', objectFit: 'contain' }} />
+                  <img src={product.companyLogo} alt="Company Logo" style={{ width: '120px', height: '120px', objectFit: 'contain' }} />
                 </div>
-                <span className="text-lg mt-8 mb-[-20px] font-semibold">{gig.jobTitle}</span>
+                <span className="text-lg mt-8 mb-[-20px] font-semibold">{product.jobTitle}</span>
               </div>
 
               <div className="flex flex-col text-gray-500 text-sm mb-2">
                 <div className="flex items-center ml-[10px] mb-3">
                   <img src={briefcaseIcon} alt="Company" style={{ width: '14px', height: '14px' }} className="mr-1" />
-                  <span>{gig.companyName}</span>
+                  <span>{product.companyName}</span>
                 </div>
                 <div className="flex items-center mt-[-30px] ml-[120px]">
                   <img src={calendarIcon} alt="Duration" style={{ width: '14px', height: '14px' }} className="mr-1" />
-                  <span>{gig.duration}</span>
+                  <span>{products.duration}</span>
                 </div>
                 <div className="flex items-center ml-2">
                   <img src={moneyIcon} alt="Rate" style={{ width: '14px', height: '14px' }} className="mr-1" />
-                  <span>{gig.rate}</span>
+                  <span>{products.rate}</span>
                 </div>
                 <div className="flex items-center mt-[-18px] ml-[120px]">
                 <img src={profileFillIcon} alt="Profile Fill" style={{ width: '14px', height: '14px' }} className="mr-1" />
-                <span>{gig.rate}</span>
+                <span>{products.quantity}</span>
               </div>
               </div>
               <button className="bg-[#263238] text-white px-4 py-2 rounded-md text-sm self-center text-center">Buy Now</button>
@@ -118,7 +122,7 @@ function Home() {
         <div className="max-w-1/2 ml-8">
           <h2 className="text-gray-800 text-2xl mb-6">About Us</h2>
           <p className="text-gray-500 text-lg mb-4">
-            We are a team dedicated to connecting freelancers with quick gigs.
+            We connect top product sellers with affordable pricing and minimal delivery time to provide convininece, ease and quality product distribution across Africa.
           </p>
           <div className="flex gap-4">
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
@@ -137,7 +141,7 @@ function Home() {
         </div>
 
         <div className="flex items-center">
-          <img src="https://img.freepik.com/premium-vector/people-shopping-cartoon-man-woman-buy-clothes-electronics-online-store-mobile-application-with-possibility-cashless-payment-discounts-vector-internet-shop-concept_176516-3547.jpg" alt="What We Do" width={400} height={400} />
+          <img src="https://img.freepik.com/premium-vector/people-shopping-cartoon-man-woman-buy-clothes-electronics-online-store-mobile-application-with-possibility-cashless-payment-discounts-vector-internet-shop-concept_176516-3547.jpg" alt="What We Do" width={1200} height={1200} />
         </div>
       </section>
     </div>

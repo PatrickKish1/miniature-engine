@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
-import JobsPage from './pages/JobsPage';
+import JobsPage from './pages/ProductsPage';
 import GigsPage from './pages/GigsPage';
 import CreateGig from './pages/CreateGig';
+import BuyNow from './pages/BuyNow';
 
 function App() {
   return (
@@ -16,10 +17,10 @@ function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/jobs" element={<JobsPage />} />
+            <Route path="/products" element={<JobsPage />} />
             <Route path="/gigs" element={<GigsPage />} />
             <Route path="/creategig" element={<CreateGig />} />
-            
+            <Route path="/details/:productId" element={<BuyNow />} />
           </Routes>
         </main>
         <Footer />

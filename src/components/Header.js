@@ -71,7 +71,7 @@ const Header = () => {
 
   const handleJobsNavigation = () => {
     if (isWalletConnected) {
-      navigate('/jobs');
+      navigate('/products');
     } else {
       setNotification({ show: true, message: 'Please connect your wallet to access this page.' });
     }
@@ -110,11 +110,11 @@ const Header = () => {
         {isWalletConnected && (
           <>
             <img src={notificationIcon} alt="Notifications" className="w-6 h-6 cursor-pointer" />
-            <Link to="/gigs" className="border-2 border-[#ff0909] text-[#ff0909] bg-white px-4 py-2 rounded font-bold">
+            <Link to="/creategigs" className="border-2 border-[#ff0909] text-[#ff0909] bg-white px-4 py-[7px] rounded font-bold">
               Sell
             </Link>
-            <Link to="/jobs" className="bg-[#ff0909] text-white px-4 py-2 rounded font-bold">
-              Deliver
+            <Link to="/products" className="bg-[#ff0909] text-white px-4 py-2 rounded font-bold">
+              Buy
             </Link>
           </>
         )}
