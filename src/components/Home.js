@@ -20,10 +20,6 @@ import linkedinIcon from '../assets/LinkedIn.svg';
 import Products from './Products';
 
 
-
-
-
-
 function Home() {
   const products = Products.slice(0, 8);
 
@@ -97,15 +93,15 @@ function Home() {
                 </div>
                 <div className="flex items-center mt-[-30px] ml-[120px]">
                   <img src={calendarIcon} alt="Duration" style={{ width: '14px', height: '14px' }} className="mr-1" />
-                  <span>{products.duration}</span>
+                  <span>{product.duration}</span>
                 </div>
                 <div className="flex items-center ml-2">
                   <img src={moneyIcon} alt="Rate" style={{ width: '14px', height: '14px' }} className="mr-1" />
-                  <span>{products.rate}</span>
+                  <span>{product.rate}</span>
                 </div>
                 <div className="flex items-center mt-[-18px] ml-[120px]">
                 <img src={profileFillIcon} alt="Profile Fill" style={{ width: '14px', height: '14px' }} className="mr-1" />
-                <span>{products.quantity}</span>
+                <span>{product.quantity}</span>
               </div>
               </div>
               <button className="bg-[#263238] text-white px-4 py-2 rounded-md text-sm self-center text-center">Buy Now</button>
